@@ -1,0 +1,47 @@
+<div class="container">
+    
+    <div class="form-group">
+        
+    <form novalidate> 
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" name="name"class="form-control" [(ngModel)]="product.name"  required minlength="5" pattern="^[A-Za-z ]+$">
+            <!-- <small *ngIf="name.invalid && name.dirty">Please Provide Only Alphabetical Characters with minimum lenght of 5!.</small>
+            <small *ngIf="!name.value && name.touched">The field is required</small>  -->
+      
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Product Category</label>
+            <input type="text" name="category" [(ngModel)]="product.category" class="form-control" required minlength="5">
+           
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Product Price</label>
+            <input type="number" name="price" [(ngModel)]="product.price" class="form-control" required>
+            
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Product Rating</label>
+            <input type="number" name="rating" [(ngModel)]="product.rating" class="form-control" required minlength="5">
+            
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Product Description</label>
+            <input type="text" name="description" [(ngModel)]="product.description" class="form-control" required minlength="20">
+            
+        </div>
+       
+        <div class="form-group">
+            <button class="btn btn-info" (click)="edit()">Edit Product</button>
+        </div>
+        <button class="btn btn-primary" routerLink='/products'>Back</button>
+        
+    </form>
+
+    </div>
+
+</div>

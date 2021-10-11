@@ -1,0 +1,13 @@
+.welcome{
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    padding-top: 250px;
+    text-align: center;
+    font-family: cursive;
+    font-size: 45px;
+}
+.welcome p{
+    color: blueviolet;
+}
+button{
+    margin: 25px;
+}

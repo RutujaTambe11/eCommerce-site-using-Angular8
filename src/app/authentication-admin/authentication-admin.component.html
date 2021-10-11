@@ -1,0 +1,88 @@
+
+<style>
+    input.ng-dirty.ng-invalid {border:2px solid red}
+    input.ng-dirty.ng-valid {border:2px solid green}
+</style>
+<div class="m-2">
+    
+    <form novalidate
+    #myForm=ngForm
+    
+    (ngSubmit)="submitForm(myForm)">
+    <div class="bg-danger text-white p-2 mb-2"
+    *ngIf="formSubmitted && myForm.invalid"
+    >
+    Errors with this form
+    <ul>
+        <li *ngFor="let error of getFormValidationSummary(myForm)">
+            {{error}}
+            
+        </li>
+    </ul>
+    
+</div>    
+
+<div class="form-group">
+    <label>Admin ID</label>
+    <input class="form-control"
+    name="name"
+    [(ngModel)]=newProduct.name
+    #name="ngModel"
+    required
+    minlength="5"
+    pattern="^[A-Za-z ]+$"
+    />
+    <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+        <li *ngFor="let error of getValidationMessages(name)">
+            {{error}}
+        </li>
+    </ul>
+    
+    <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+        <li *ngIf=name.errors.required>
+            You must enter Admin ID 
+        </li>
+        <li *ngIf=name.errors.pattern>
+            Admin ID should only contain letters and spaces
+        </li>
+        <li *ngIf=name.errors.minlength>
+            Admin ID must be at least {{name.errors.minlength.requiredLength}} required
+        </li>
+        
+    </ul>
+    
+</div>
+
+<div class="form-group">
+    <label>Password:</label>
+    <input class="form-control"
+    name="category" type="password"
+    [(ngModel)]=newProduct.category 
+    #category="ngModel"
+    required
+    minlength="8"
+    pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=.*[$@$!%*?&]).{8,30}$"/>
+    
+    <ul class="text-danger list-unstyled" *ngIf="category.dirty && category.invalid">
+        <li *ngIf=category.errors.required>
+            Please enter your password 
+        </li>
+        <li *ngIf=category.errors.pattern>
+            Password should only contain letters, numbers and atleast one special character
+        </li>
+        <li *ngIf=category.errors.minlength>
+            Password must be at least {{category.errors.minlength.requiredLength}} required
+        </li>
+        
+    </ul>
+    
+    <ul class="text-danger list-unstyled" *ngIf="category.dirty && category.invalid">
+        <li *ngFor="let error of formGroup.getValidationMessages(category)">
+            {{error}}
+        </li>
+    </ul>   
+</div>
+
+<a routerLink='/admin'><button class="btn btn-primary" type="submit" >Login</button></a>&nbsp;&nbsp;
+<button type="button" (click)="onReset()" class="btn btn-warning float-right">Reset</button>
+</form>

@@ -1,0 +1,26 @@
+<app-user></app-user>
+<div class="card">
+    <div class="card-header">
+        Product Details
+    </div>
+
+    <div class="card-footer">
+        <div class="info">
+            <p>Product Name: {{product?.name}}</p>
+            <p><img [src]="product?.imageUrl" style="width: 200px; height: 150px;"></p>
+            
+            <p>Category:{{product?.category}} </p>
+            <p>Price:{{product?.price | currency:'INR'}} </p>
+            <p>Description:{{product?.description}} </p>
+            <p>Rating: <app-star [rating]='product.rating'
+                (ratingClicked)='onRatingClicked($event)'>
+            </app-star> </p>
+        </div>
+    
+    <button class="btn btn-outline-secondary" (click)="onBack()" style="width:80px;margin-right: 10px;">Back </button>
+    <button (click)="addToCart(product)" class="btn btn-warning" style="margin-right: 10px;">Add to Cart</button>
+    <button class="btn btn-danger" (click)="deleteProduct()" style="margin-right: 10px;">Delete</button>
+
+    </div>
+    
+</div>

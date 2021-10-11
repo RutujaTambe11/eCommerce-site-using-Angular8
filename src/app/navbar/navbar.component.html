@@ -1,0 +1,11 @@
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+  <nav class ='navbar navbar-expand navbar-light bg-light'>
+    <ul class='nav nav-pills'>
+      <li> <a class='nav-link' [routerLink] =" ['/login'] " > Login</a>  </li>
+      <li> <a class='nav-link' [routerLink] =" ['/products'] " > Product List</a>  </li>
+      <li> <a class='nav-link' [routerLink] =" ['/addproduct'] " > Add Product  </a> </li>
+      <li><a routerLink="/cart" class="button fancy-button">Cart</a></li>
+    </ul>
+  </nav>

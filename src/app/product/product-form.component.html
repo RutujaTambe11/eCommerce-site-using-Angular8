@@ -1,0 +1,158 @@
+
+<style>
+    input.ng-dirty.ng-invalid {border:2px solid red}
+    input.ng-dirty.ng-valid {border:2px solid green}
+</style>
+<div class="m-2">
+    <div class="bg-info text-white mb-2 p-2">
+        Product: {{jsonProduct}}
+    </div>
+    <form novalidate
+    #myForm=ngForm
+    (ngSubmit)="submitForm(myForm)">
+    <div class="bg-danger text-white p-2 mb-2"
+    *ngIf="formSubmitted && myForm.invalid"
+    >
+    Issues with this form
+    <ul>
+        <li *ngFor="let error of getFormValidationSummary(myForm)">
+            {{error}}
+
+        </li>
+    </ul>
+
+    </div>    
+
+    <div class="form-group">
+    <label>Product:</label>
+        <input class="form-control"
+        name="name"
+        [(ngModel)]=newProduct.name
+        #name="ngModel"
+        required
+        minlength="5"
+        pattern="^[A-Za-z ]+$"
+        placeholder="product name"
+        />
+        <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+            <li *ngFor="let error of getValidationMessages(name)">
+                {{error}}
+            </li>
+            </ul>
+        
+
+        <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+            <li *ngIf=name.errors.required>
+                You must enter product name 
+            </li>
+            <li *ngIf=name.errors.pattern>
+                Product names should only contain letters and spaces
+            </li>
+            <li *ngIf=name.errors.minlength>
+                Product names must be at least {{name.errors.minlength.requiredLength}} required
+            </li>
+
+        </ul>
+    
+</div>
+
+
+
+<div class="form-group">
+    <label>Category:</label>
+        <input class="form-control"
+        name="category"
+        [(ngModel)]=newProduct.category 
+        #category="ngModel"
+        required
+        minlength="8"
+        pattern="^[A-Za-z]+$"
+       
+        placeholder="product Category"/>
+
+        <ul class="text-danger list-unstyled" *ngIf="category.dirty && category.invalid">
+            <li *ngIf=category.errors.required>
+                You must enter product category 
+            </li>
+            <li *ngIf=category.errors.pattern>
+                Product category should only contain letters and spaces
+            </li>
+            <li *ngIf=category.errors.minlength>
+                Product category must be at least {{category.errors.minlength.requiredLength}} required
+            </li>
+
+        </ul>
+
+        <ul class="text-danger list-unstyled" *ngIf="category.dirty && category.invalid">
+            <li *ngFor="let error of formGroup.getValidationMessages('category')">
+                {{error}}
+            </li>
+        </ul>
+
+    
+</div>
+
+
+
+<div class="form-group">
+    <label>Price:</label>
+        <input class="form-control"
+        type="number"
+         [(ngModel)]=newProduct.price
+        #price="ngModel"
+        name="price"
+        required
+        min="50"
+        max="10000"
+        placeholder="product price"/>
+
+        <ul class="text-danger list-unstyled" *ngIf="price.dirty && price.invalid">
+            <li *ngIf=price.errors.required>
+                You must enter product price 
+            </li>
+            <li *ngIf=price.errors.min>
+                Product price must be at least be 50
+            </li>
+            <li *ngIf=price.errors.max>
+                Product price must not be greater than 10000
+            </li>
+
+        </ul>
+    
+</div>
+<div class="form-group">
+    <label>Rating:</label>
+        <input class="form-control"
+        type="number"
+         [(ngModel)]=newProduct.rating
+        #price="ngModel"
+        name="rating"
+        required
+        min="1"
+        max="5"
+        placeholder="product Rating"/>
+
+        <ul class="text-danger list-unstyled" *ngIf="price.dirty && price.invalid">
+            <li *ngIf=price.errors.required>
+                You must enter product rating 
+            </li>
+            <li *ngIf=price.errors.min>
+                Rating  must be greater or equal to 1
+            </li>
+            <li *ngIf=price.errors.max>
+                Rating  must not be greater than 5
+            </li>
+
+        </ul>
+    
+</div>
+
+<button class="btn btn-primary" type="submit" >Add</button>
+<button class="btn btn-primary" routerLink='/products' >Back</button>
+
+<!--button class="btn btn-primary" (click)="addProduct(newProduct)">Add</button-->
+</form>
+
+
+
+</div>

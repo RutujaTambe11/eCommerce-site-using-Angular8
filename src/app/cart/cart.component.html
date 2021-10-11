@@ -1,0 +1,39 @@
+<h3>Cart</h3>
+<button style="text-align: center; margin: 20px;" class="btn btn-danger" (click)='clearCart()'>Empty Cart</button>
+
+<a style="text-align: center; margin: 20px;" routerLink='/userproducts'>
+  <button class="btn btn-secondary" >Back</button>
+</a>
+
+<div class="cart-item" *ngFor="let item of items">
+    <div name="cart-card" ngDefaultControl [(ngModel)]='id' class="card" style="width: 18rem;">
+        <img class="card-img-top" [src]='item.imageUrl' alt="Card image cap">
+        <div class="card-body">
+          <div class="card-text">
+            <p>Product ID: {{item.id}}</p>
+              <p>Product Name: {{item.name}} </p>
+              <p>Category: {{item.category}} </p>
+              <p>Description: {{item.description}} </p>
+              <p>Price: {{item.price | currency: 'INR'}} </p>
+              
+          </div>
+        </div>
+            <p>Total Amount: <span>{{qty * item.price}} </span></p>
+            <button class="btn btn-primary" (click)="increment()">+</button>
+            <span>{{qty}}</span>
+            <button class="btn btn-primary" (click)="decrement()" style="margin-bottom: 10px;">-</button>
+           
+          
+            <div>
+              <button class="btn btn-danger" (click)='deleteProduct()' style="margin-right: 10px;">Delete item</button>
+              <button class="btn btn-success" (click)='placeOrder()'>Place Order</button>
+            </div>
+      </div>
+</div>
+<br>
+<br>
+
+
+
+
+  

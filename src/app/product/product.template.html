@@ -1,0 +1,52 @@
+<app-admin></app-admin>
+
+<div class="table-responsive">
+<table class="table" *ngIf= 'productList && productList.length'>
+<thead>
+    <tr>           
+        <th>Image</th>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Rating</th>
+        <th></th>
+    </tr>
+</thead >
+    <tbody>
+        <tr *ngFor='let p of productList'
+        [routerLink]="['/product',p.id]" >
+            <td>
+                <img [src]="p.imageUrl" style="height: 70px;width: 70px;">
+            </td>
+            <td >
+                {{p.id}}
+            </td>
+            <td>
+                {{p.name }}
+            </td>
+            <td>
+                {{p.category }}
+            </td>
+            <td>
+                {{p.price | currency:'INR'}}
+            </td>
+            <td>
+                <app-star [rating]='p.rating'
+                (ratingClicked)='onRatingClicked($event)'>
+            </app-star>
+            </td>
+            <td>
+                <button class="btn btn-secondary" [routerLink]="['/editproduct',p.id]" ><i class="fas fa-edit"></i></button>
+
+               
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+</div>
+
+
+
